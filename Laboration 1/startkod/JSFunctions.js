@@ -62,7 +62,7 @@ oGameData.initGlobalObject = function() {
  */
 
 /*
-  const winningState = [
+
         [0, 1, 2], // Horizontal win
         [3, 4, 5], // Horizontal win
         [6, 7, 8], // Horizontal win
@@ -71,81 +71,11 @@ oGameData.initGlobalObject = function() {
         [2, 5, 8], // Vertical win
         [0, 4, 8], // Diagonal win (left to right)
         [2, 4, 6]  // Diagnoal win (right to left)
-      ];
+
 */
 
 oGameData.checkForGameOver = function() {
 
-function checkHorizontal() {
 
-    if(oGameData.gameField[0, 1, 2] == (document.querySelectorAll('[data-id]' == 'X')) || (oGameData.gameField[3, 4, 5] == (document.querySelectorAll('[data-id]' == 'X')) || (oGameData.gameField[6, 7, 8] == (document.querySelectorAll('[data-id]' == 'X')) {
-      return 1;
-    }
-
-    else if (oGameData.gameField[0, 1, 2] == 'O' || oGameData.gameField[3, 4, 5] == 'O' || oGameData.gameField[6, 7, 8] == 'O'){
-      return 2;
-    }
-
-    else {
-      return 0;
-    }
-
-};
-
-  function checkVertical {
-
-    if(oGameData.gameField[0, 3, 6] == 'X' || oGameData.gameField[1, 4, 7] == 'X' || oGameData.gameField[2, 5, 8] == 'X') {
-      return 1;
-    }
-
-    else if (oGameData.gameField[0, 3, 6] == 'O' || oGameData.gameField[1, 4, 7] == 'O' || oGameData.gameField[2, 5, 8] == 'O') {
-      return 2;
-    }
-
-    else {
-      return 0;
-    }
-
-  }
-
-  function checkDiagonalLeftToRight {
-
-    if(oGameData.gameField[0, 4, 8] == 'X') {
-      return 1;
-    }
-
-    else if(oGameData.gameField[0, 4, 8] == 'O') {
-      return 2;
-    }
-
-    else {
-      return 0;
-    }
-
-  }
-
-  function checkDiagonalRightToLeft {
-
-    if(oGameData.gameField[2, 4, 6] == 'X') {
-      return 1;
-    }
-
-    else if(oGameData.gameField[2, 4, 6] == 'O') {
-      return 2;
-    }
-
-    else {
-      return 0;
-    }
-
-}
-
-  function checkForDraw {
-
-    if(checkDiagonalLeftToRight == 0 || checkDiagonalRightToLeft == 0 || checkVertical == 0 || checkHorizontal == 0) {
-      return 3;
-    }
-
-  }
 
 }

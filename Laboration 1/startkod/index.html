@@ -7,22 +7,22 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <style>
             td {
-                width: 125px; 
-                height: 125px; 
-                border: 1px solid darkgray; 
-                font-size: 50px; 
+                width: 125px;
+                height: 125px;
+                border: 1px solid darkgray;
+                font-size: 50px;
                 text-align: center;
             }
         </style>
     </head>
     <body>
-    
+
         <main class="container">
             <div class="jumbotron text-center">
                 <h1>TicTacToe</h1>
                 <p id="errorMsg">Fyll i nicknames samt färg och börja spela!</p>
             </div>
-            <form> 
+            <form>
             <div id="divInForm" class="mt-5 row">
                 <div class="col-6">
                     <label for="nick1">Nickname spelare 1:</label>
@@ -42,17 +42,17 @@
                 </div>
                 <div id="divWithA" class="col-12 text-right mt-5">
                     <a href="#" id="newGame" class="btn btn-primary btn-xl">Starta spelet!</a>
-                </div>              
+                </div>
             </div>
             </form>
 
             <!-- Gui för spelplan-->
             <div id="gameArea" class="gameArea">
-                <!-- Varje tabell-cell(td) märks med attributet data-id 
+                <!-- Varje tabell-cell(td) märks med attributet data-id
                     som motsvarar vektor-index i gameField -->
                 <table class="ml-auto mr-auto">
 
-                    <tr>                
+                    <tr>
                         <td data-id='0'> </td>
                         <td data-id='1'> </td>
                         <td data-id='2'> </td>
@@ -70,9 +70,9 @@
 
                 </table>
             </div>
-            
+
         </main>
-    
+
 
         <script src="JSFunctions.js"></script>
 
@@ -102,6 +102,6 @@
         </script>
 
     </body>
-    
+
 
 </html>
