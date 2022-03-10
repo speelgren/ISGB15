@@ -76,6 +76,53 @@ oGameData.initGlobalObject = function() {
 
 oGameData.checkForGameOver = function() {
 
+  let tile = document.querySelectorAll( 'td [data-id]');
+  let tile_length = tile.length;
+  //console.log('querySelectorAll(\'td[data-id]\')', tiles, tiles_length);
 
+  for(let i = 0; i < tile_length; i++) {
+    console.log(tile.item(i));
+  }
+
+  console.log(tile[0]);
+  console.log(tile[8]);
+
+  function checkHorizontal() {
+
+    if(oGameData.playerOne ==
+      (tile[0] && tile[1] && tile[2])
+      || (tile[3] && tile[4] && tile[5])
+      || (tile[6] && tile[7] && tile[8])) {
+
+      return 1;
+
+    }
+
+    else if(oGameData.playerTwo ==
+      (tile[0] && tile[1] && tile[2])
+      || (tile[3] && tile[4] && tile[5])
+      || (tile[6] && tile[7] && tile[8])) {
+
+      return 2;
+
+    }
+
+  }
+
+  function checkVertical() {
+
+  }
+
+  function checkDiagonalLeftToRight() {
+
+  }
+
+  function checkDiagonalRightToLeft() {
+
+  }
+
+  function checkForDraw() {
+
+  }
 
 }
