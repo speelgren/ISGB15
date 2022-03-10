@@ -61,18 +61,17 @@ oGameData.initGlobalObject = function() {
  * Funktionen tar inte emot några värden.
  */
 
-/*
+ const winState = [
+     [0, 1, 2], // Horizontal win
+     [3, 4, 5], // Horizontal win
+     [6, 7, 8], // Horizontal win
+     [0, 3, 6], // Vertical win
+     [1, 4, 7], // Vertical win
+     [2, 5, 8], // Vertical win
+     [0, 4, 8], // Diagonal win (left to right)
+     [2, 4, 6]  // Diagnoal win (right to left)
+ ];
 
-        [0, 1, 2], // Horizontal win
-        [3, 4, 5], // Horizontal win
-        [6, 7, 8], // Horizontal win
-        [0, 3, 6], // Vertical win
-        [1, 4, 7], // Vertical win
-        [2, 5, 8], // Vertical win
-        [0, 4, 8], // Diagonal win (left to right)
-        [2, 4, 6]  // Diagnoal win (right to left)
-
-*/
 
 oGameData.checkForGameOver = function() {
 
