@@ -17,7 +17,7 @@ oGameData.initGlobalObject = function() {
     //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     /* Testdata för att testa rättningslösning */
-    oGameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
+    //oGameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
     //oGameData.gameField = Array('X', '', '', 'X', '', '', 'X', '', '');
     //oGameData.gameField = Array('X', '', '', '', 'X', '', '', '', 'X');
     //oGameData.gameField = Array('', '', 'O', '', 'O', '', 'O', '', '');
@@ -25,8 +25,8 @@ oGameData.initGlobalObject = function() {
 
     //DRAW:
     //oGameData.gameField = Array('X', 'O', 'X','O', 'O', 'X', 'X', 'X', 'O');
-    //No Win
-    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
+    //No Win:
+    oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     //Indikerar tecknet som skall användas för spelare ett.
     oGameData.playerOne = "X";
@@ -210,7 +210,7 @@ oGameData.checkForGameOver = function() {
     || (diagonalLTR === 1)
     || (diagonalRTL === 1)) {
 
-      console.log("Win för X");
+      console.log("Win för X.");
       return 1;
   }
 
@@ -219,7 +219,7 @@ oGameData.checkForGameOver = function() {
     || (diagonalLTR === 2)
     || (diagonalRTL === 2)) {
 
-      console.log("Win för O");
+      console.log("Win för O.");
       return 2;
   }
 
@@ -227,12 +227,12 @@ oGameData.checkForGameOver = function() {
 
     if(draw == 3) {
 
-      console.log("Draw");
+      console.log("Draw.");
       return 3;
 
     } else if(draw == 0) {
 
-      console.log("Ingen vinnare");
+      console.log("No winner.");
       return 0;
     }
   }
