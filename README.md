@@ -4,4 +4,4 @@ Javascript för webbutveckling
 Tic Tac Toe-projekt.
 Laboration 1 - 4.
 
-Robin Johansson Speelgren
+Robin Johansson Speelgren, Moritz Uhlig, Johan Lindhe.
