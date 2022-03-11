@@ -14,14 +14,17 @@ let oGameData = {};
 oGameData.initGlobalObject = function() {
 
     //Datastruktur för vilka platser som är lediga respektive har brickor
-    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
+    oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     /* Testdata för att testa rättningslösning */
-    //oGameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
+    //GameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
     //oGameData.gameField = Array('X', '', '', 'X', '', '', 'X', '', '');
     //oGameData.gameField = Array('X', '', '', '', 'X', '', '', '', 'X');
-    oGameData.gameField = Array('', '', 'O', '', 'O', '', 'O', '', '');
-    //oGameData.gameField = Array('X', 'O', 'X', '0', 'X', 'O', 'O', 'X', 'O');
+    //oGameData.gameField = Array('', '', 'O', '', 'O', '', 'O', '', '');
+    //oGameData.gameField = Array('X', 'O', 'X', 'O', 'X', 'O', 'O', 'X', 'O');
+
+    //No Winner:
+    //oGameData.gameField = Array('X', 'O', 'X','O', 'O', 'X', 'X', 'X', 'O');
 
     //Indikerar tecknet som skall användas för spelare ett.
     oGameData.playerOne = "X";
@@ -72,10 +75,6 @@ oGameData.initGlobalObject = function() {
      [2, 4, 6]  // Diagnoal win (right to left)
 */
 
-
-
-
-
 oGameData.checkForGameOver = function() {
 
   function checkHorizontal() {
@@ -103,8 +102,6 @@ oGameData.checkForGameOver = function() {
       || ((oGameData.gameField[6] === 'O')
       && (oGameData.gameField[7] === 'O')
       && (oGameData.gameField[8] === 'O'))) {
-
-        console.log
 
       return 2;
 
@@ -186,20 +183,45 @@ oGameData.checkForGameOver = function() {
 
   function checkForDraw() {
 
+    for(let i = 0; i < oGameData.gameField.length; i++) {
+      if(oGameData.gameField[i] == '') {
+        return 3;
+      }
+    }
+
   }
 
   let horizontal = checkHorizontal();
   let vertical = checkVertical();
   let diagonalLTR = checkDiagonalLeftToRight();
   let diagonalRTL = checkDiagonalRightToLeft();
+  let draw = checkForDraw();
 
-  if((horizontal === 1) || (vertical === 1) || (diagonalLTR === 1) || (diagonalRTL === 1)) {
-    console.log("Horizontel win för X");
-    return 1;
+  if((horizontal === 1)
+    || (vertical === 1)
+    || (diagonalLTR === 1)
+    || (diagonalRTL === 1)) {
+      console.log("Win för X");
+      return 1;
   }
-  else if((horizontal === 2) || (vertical === 2) || (diagonalLTR === 2) || (diagonalRTL === 2)) {
-    console.log("Horizontel win för O");
-    return 2;
+
+  else if((horizontal === 2)
+    || (vertical === 2)
+    || (diagonalLTR === 2)
+    || (diagonalRTL === 2)) {
+      console.log("Win för O");
+      return 2;
+  }
+
+  else {
+    if(draw === 3) {
+      console.log("Draw");
+      return 3;
+
+    } else {
+      console.log("Ingen vinnare");
+
+    }
   }
 
 }
