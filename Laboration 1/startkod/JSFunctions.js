@@ -14,13 +14,13 @@ let oGameData = {};
 oGameData.initGlobalObject = function() {
 
     //Datastruktur för vilka platser som är lediga respektive har brickor
-    oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
+    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     /* Testdata för att testa rättningslösning */
     //oGameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
     //oGameData.gameField = Array('X', '', '', 'X', '', '', 'X', '', '');
     //oGameData.gameField = Array('X', '', '', '', 'X', '', '', '', 'X');
-    //oGameData.gameField = Array('', '', 'X', '', 'X', '', 'X', '', '');
+    oGameData.gameField = Array('', '', 'O', '', 'O', '', 'O', '', '');
     //oGameData.gameField = Array('X', 'O', 'X', '0', 'X', 'O', 'O', 'X', 'O');
 
     //Indikerar tecknet som skall användas för spelare ett.
@@ -61,7 +61,7 @@ oGameData.initGlobalObject = function() {
  * Funktionen tar inte emot några värden.
  */
 
- const winState = [
+/*
      [0, 1, 2], // Horizontal win
      [3, 4, 5], // Horizontal win
      [6, 7, 8], // Horizontal win
@@ -70,37 +70,41 @@ oGameData.initGlobalObject = function() {
      [2, 5, 8], // Vertical win
      [0, 4, 8], // Diagonal win (left to right)
      [2, 4, 6]  // Diagnoal win (right to left)
- ];
+*/
+
+
+
 
 
 oGameData.checkForGameOver = function() {
 
-  let tile = document.querySelectorAll( 'td [data-id]');
-  let tile_length = tile.length;
-  //console.log('querySelectorAll(\'td[data-id]\')', tiles, tiles_length);
-
-  for(let i = 0; i < tile_length; i++) {
-    console.log(tile.item(i));
-  }
-
-  console.log(tile[0]);
-  console.log(tile[8]);
-
   function checkHorizontal() {
 
-    if(oGameData.playerOne ==
-      (tile[0] && tile[1] && tile[2])
-      || (tile[3] && tile[4] && tile[5])
-      || (tile[6] && tile[7] && tile[8])) {
+    if(((oGameData.gameField[0] === 'X')
+      && (oGameData.gameField[1] === 'X')
+      && (oGameData.gameField[2] === 'X'))
+      || ((oGameData.gameField[3] === 'X')
+      && (oGameData.gameField[4] === 'X')
+      && (oGameData.gameField[5] === 'X'))
+      || ((oGameData.gameField[6] === 'X')
+      && (oGameData.gameField[7] === 'X')
+      && (oGameData.gameField[8] === 'X'))) {
 
       return 1;
 
     }
 
-    else if(oGameData.playerTwo ==
-      (tile[0] && tile[1] && tile[2])
-      || (tile[3] && tile[4] && tile[5])
-      || (tile[6] && tile[7] && tile[8])) {
+    else if(((oGameData.gameField[0] === 'O')
+      && (oGameData.gameField[1] === 'O')
+      && (oGameData.gameField[2] === 'O'))
+      || ((oGameData.gameField[3] === 'O')
+      && (oGameData.gameField[4] === 'O')
+      && (oGameData.gameField[5] === 'O'))
+      || ((oGameData.gameField[6] === 'O')
+      && (oGameData.gameField[7] === 'O')
+      && (oGameData.gameField[8] === 'O'))) {
+
+        console.log
 
       return 2;
 
@@ -110,18 +114,92 @@ oGameData.checkForGameOver = function() {
 
   function checkVertical() {
 
+    if(((oGameData.gameField[0] === 'X')
+      && (oGameData.gameField[3] === 'X')
+      && (oGameData.gameField[6] === 'X'))
+      || ((oGameData.gameField[1] === 'X')
+      && (oGameData.gameField[4] === 'X')
+      && (oGameData.gameField[7] === 'X'))
+      || ((oGameData.gameField[2] === 'X')
+      && (oGameData.gameField[5] === 'X')
+      && (oGameData.gameField[8] === 'X'))) {
+
+      return 1;
+
+    }
+
+    else if(((oGameData.gameField[0] === 'O')
+      && (oGameData.gameField[3] === 'O')
+      && (oGameData.gameField[6] === 'O'))
+      || ((oGameData.gameField[1] === 'O')
+      && (oGameData.gameField[4] === 'O')
+      && (oGameData.gameField[7] === 'O'))
+      || ((oGameData.gameField[2] === 'O')
+      && (oGameData.gameField[5] === 'O')
+      && (oGameData.gameField[8] === 'O'))) {
+
+      return 2;
+
+    }
+
   }
 
   function checkDiagonalLeftToRight() {
+
+    if((oGameData.gameField[0] === 'X')
+      && (oGameData.gameField[4] === 'X')
+      && (oGameData.gameField[8])) {
+
+      return 1;
+
+    }
+
+    else if((oGameData.gameField[0] === 'O')
+      && (oGameData.gameField[4] === 'O')
+      && (oGameData.gameField[8])) {
+
+      return 2;
+
+    }
 
   }
 
   function checkDiagonalRightToLeft() {
 
+    if((oGameData.gameField[2] === 'X')
+      && (oGameData.gameField[4] === 'X')
+      && (oGameData.gameField[6]) === 'X') {
+
+      return 1;
+
+    }
+
+    else if((oGameData.gameField[2] === 'O')
+      && (oGameData.gameField[4] === 'O')
+      && (oGameData.gameField[6]) === 'O') {
+
+      return 2;
+
+    }
+
   }
 
   function checkForDraw() {
 
+  }
+
+  let horizontal = checkHorizontal();
+  let vertical = checkVertical();
+  let diagonalLTR = checkDiagonalLeftToRight();
+  let diagonalRTL = checkDiagonalRightToLeft();
+
+  if((horizontal === 1) || (vertical === 1) || (diagonalLTR === 1) || (diagonalRTL === 1)) {
+    console.log("Horizontel win för X");
+    return 1;
+  }
+  else if((horizontal === 2) || (vertical === 2) || (diagonalLTR === 2) || (diagonalRTL === 2)) {
+    console.log("Horizontel win för O");
+    return 2;
   }
 
 }
