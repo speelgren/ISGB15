@@ -14,17 +14,19 @@ let oGameData = {};
 oGameData.initGlobalObject = function() {
 
     //Datastruktur för vilka platser som är lediga respektive har brickor
-    oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
+    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     /* Testdata för att testa rättningslösning */
-    //GameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
+    oGameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
     //oGameData.gameField = Array('X', '', '', 'X', '', '', 'X', '', '');
     //oGameData.gameField = Array('X', '', '', '', 'X', '', '', '', 'X');
     //oGameData.gameField = Array('', '', 'O', '', 'O', '', 'O', '', '');
     //oGameData.gameField = Array('X', 'O', 'X', 'O', 'X', 'O', 'O', 'X', 'O');
 
-    //No Winner:
+    //DRAW:
     //oGameData.gameField = Array('X', 'O', 'X','O', 'O', 'X', 'X', 'X', 'O');
+    //No Win
+    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     //Indikerar tecknet som skall användas för spelare ett.
     oGameData.playerOne = "X";
@@ -89,8 +91,8 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[7] === 'X')
       && (oGameData.gameField[8] === 'X'))) {
 
+      console.log("Horizontal");
       return 1;
-
     }
 
     else if(((oGameData.gameField[0] === 'O')
@@ -103,8 +105,8 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[7] === 'O')
       && (oGameData.gameField[8] === 'O'))) {
 
+      console.log("Horizontal");
       return 2;
-
     }
 
   }
@@ -121,8 +123,8 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[5] === 'X')
       && (oGameData.gameField[8] === 'X'))) {
 
+      console.log("Vertical");
       return 1;
-
     }
 
     else if(((oGameData.gameField[0] === 'O')
@@ -135,8 +137,8 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[5] === 'O')
       && (oGameData.gameField[8] === 'O'))) {
 
+      console.log("Vertical");
       return 2;
-
     }
 
   }
@@ -145,18 +147,19 @@ oGameData.checkForGameOver = function() {
 
     if((oGameData.gameField[0] === 'X')
       && (oGameData.gameField[4] === 'X')
-      && (oGameData.gameField[8])) {
+      && (oGameData.gameField[8] === 'X')) {
 
+      console.log("Left to Right");
       return 1;
 
     }
 
     else if((oGameData.gameField[0] === 'O')
       && (oGameData.gameField[4] === 'O')
-      && (oGameData.gameField[8])) {
+      && (oGameData.gameField[8] === 'O')) {
 
+      console.log("Left to Right");
       return 2;
-
     }
 
   }
@@ -167,26 +170,31 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[4] === 'X')
       && (oGameData.gameField[6]) === 'X') {
 
+      console.log("Right to Left");
       return 1;
-
     }
 
     else if((oGameData.gameField[2] === 'O')
       && (oGameData.gameField[4] === 'O')
       && (oGameData.gameField[6]) === 'O') {
 
+      console.log("Right to Left");
       return 2;
-
     }
 
   }
 
   function checkForDraw() {
 
-    for(let i = 0; i < oGameData.gameField.length; i++) {
-      if(oGameData.gameField[i] == '') {
-        return 3;
-      }
+    let check = oGameData.gameField;
+    if(check.includes('') === false) {
+
+      return 3;
+    }
+
+    else if(check.includes('') === true) {
+
+      return 0;
     }
 
   }
@@ -201,6 +209,7 @@ oGameData.checkForGameOver = function() {
     || (vertical === 1)
     || (diagonalLTR === 1)
     || (diagonalRTL === 1)) {
+
       console.log("Win för X");
       return 1;
   }
@@ -209,18 +218,22 @@ oGameData.checkForGameOver = function() {
     || (vertical === 2)
     || (diagonalLTR === 2)
     || (diagonalRTL === 2)) {
+
       console.log("Win för O");
       return 2;
   }
 
   else {
-    if(draw === 3) {
+
+    if(draw == 3) {
+
       console.log("Draw");
       return 3;
 
-    } else {
-      console.log("Ingen vinnare");
+    } else if(draw == 0) {
 
+      console.log("Ingen vinnare");
+      return 0;
     }
   }
 
