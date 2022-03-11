@@ -14,7 +14,7 @@ let oGameData = {};
 oGameData.initGlobalObject = function() {
 
     //Datastruktur för vilka platser som är lediga respektive har brickor
-    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
+    oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     /* Testdata för att testa rättningslösning */
     //oGameData.gameField = Array('X', 'X', 'X', '', '', '', '', '', '');
@@ -26,7 +26,7 @@ oGameData.initGlobalObject = function() {
     //DRAW:
     //oGameData.gameField = Array('X', 'O', 'X','O', 'O', 'X', 'X', 'X', 'O');
     //No Win:
-    oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
+    //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     //Indikerar tecknet som skall användas för spelare ett.
     oGameData.playerOne = "X";
