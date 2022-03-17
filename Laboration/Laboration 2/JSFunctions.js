@@ -238,3 +238,7 @@ oGameData.checkForGameOver = function() {
   }
 
 }
+
+function validateForm() {
+  
+}
