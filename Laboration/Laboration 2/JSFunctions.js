@@ -240,5 +240,29 @@ oGameData.checkForGameOver = function() {
 }
 
 function validateForm() {
-  
+  console.log("Anropet fungerar.");
+
+
 }
+
+window.addEventListener('load', function() {
+
+  oGameData.initGlobalObject();
+  document.getElementById("gameArea").classList.add("d-none");
+  // Lägg till d-none på klassen gameArea.
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+
+  let start = document.querySelector('#newGame');
+  start.addEventListener('click', function( start ) {
+
+    try {
+
+      validateForm();
+    } catch ( err ) {
+
+      start.preventDefault();
+    }
+
+  });
+
+});

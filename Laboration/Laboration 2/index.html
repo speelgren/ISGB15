@@ -16,7 +16,7 @@
         </style>
     </head>
       <!-- Lyssnare onload -->
-    <body onload="oGameData.initGlobalObject();">
+    <body>
 
         <main class="container">
             <div class="jumbotron text-center">
@@ -41,14 +41,14 @@
                     <label for="color2">Färg spelare 2:</label>
                     <input type="color" id="color2" value="#FFFFFF" placeholder="nickname" class="form-control" title="färg för spelare 2">
                 </div>
-                <div onclick="validateForm();" id="divWithA" class="col-12 text-right mt-5">
+                <div id="divWithA" class="col-12 text-right mt-5">
                     <a href="#" id="newGame" class="btn btn-primary btn-xl">Starta spelet!</a>
                 </div>
             </div>
             </form>
 
             <!-- Gui för spelplan-->
-            <div id="gameArea" class="gameArea, d-none">
+            <div id="gameArea" class="gameArea">
                 <!-- Varje tabell-cell(td) märks med attributet data-id
                     som motsvarar vektor-index i gameField -->
                 <table class="ml-auto mr-auto">
