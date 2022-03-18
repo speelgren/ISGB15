@@ -242,42 +242,32 @@ oGameData.checkForGameOver = function() {
 function initiateGame() {
 
   console.log("InitiateGame();");
-
 }
 
 function validateForm() {
 
-  let nick1 = document.getElementById('nick1').value;
-  let nick2 = document.getElementById('nick2').value;
-
-  let color1 = document.getElementById('color1');
-  let color2 = document.getElementById('color2');
 
   try {
 
-    if(nick1 !== nick2) throw 'olika';
-    if(nick1 >= 5) throw '>= 5';
-    if(nick2 >= 5) throw '>= 5';
 
-  } catch ( err ) {
-    initiateGame();
+  } catch (e) {
+
+    
   }
 
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function( event ) {
 
   oGameData.initGlobalObject();
   document.getElementById('gameArea').classList.add('d-none');
   // Lägg till d-none på klassen gameArea.
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 
-  let start = document.querySelector('#newGame');
-  start.addEventListener('click', function( start ) {
-
+  let start = document.getElementById('newGame');
+  start.addEventListener('click', function( event ) {
 
     validateForm();
-
   });
 
 });
