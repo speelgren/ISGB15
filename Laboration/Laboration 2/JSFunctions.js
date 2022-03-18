@@ -330,5 +330,5 @@ function initiateGame(){
   // Test för att se vad random får för värde.
   console.log(random);
 
-document.querySelector('.jumbotron').innerHTML = "<b>Aktuell spelare är: " + playerName + " (" + playerChar + ") </b>";
+document.querySelector(".jumbotron").innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
 }
