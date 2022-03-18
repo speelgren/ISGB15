@@ -282,7 +282,7 @@ function validateForm(){
   }
     catch( err ){
 
-      errormsgg.textContent = "Testa igen, " + "   " + err;
+      errormsgg.textContent = 'Testa igen, ' + ' ' + err;
     }
 }
 
