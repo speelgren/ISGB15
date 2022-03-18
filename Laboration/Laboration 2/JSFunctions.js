@@ -267,8 +267,8 @@ function validateForm(){
 
   try{
 
-    if(nick1.length <= 5) throw "Måste vara längre än 5 bokstäver";
-    if(nick2.length <= 5) throw "Måste vara långre än 5 bokstäver";
+    if(nick1.length < 5) throw "Måste vara längre än 5 bokstäver";
+    if(nick2.length < 5) throw "Måste vara långre än 5 bokstäver";
     if(nick1 == nick2) throw "Samma namn";
 
     // Hexadecimal vit måste skrivas med små bokstäver.......... suck.
@@ -313,32 +313,22 @@ function initiateGame(){
 
   let playerChar;
   let playerName;
-
   let random = Math.random();
 
+  if(random < 0.5) {
 
-  try {
+    playerChar = oGameData.playerOne;
+    playerName = nick1.value;
+    oGameData.currentPlayer = oGameData.playerOne;
+  } else if (random >= 0.5){
 
-    if(random < 0.5) {
-
-      playerChar = oGameData.playerOne;
-      playerName = oGameData.nickNamePlayerOne;
-      oGameData.currentPlayer = oGameData.playerOne;
-    } else if(random >= 0.5) {
-
-      playerChar = oGameData.playerTwo;
-      playerName = oGameData.nickNamePlayerTwo;
-      oGameData.currentPlayer = oGameData.playerTwo;
-    }
-    /* Test för att se vad random får för värde.
-    console.log(random);
-    */
-  } catch ( err ) {
-
-    // OM det sker ett fel?
-    errormsgg.textContent = "Fel... " + " " + err;
+    playerChar = oGameData.playerTwo;
+    playerName = nick2.value;
+    oGameData.currentPlayer = oGameData.playerTwo;
   }
 
-document.querySelector('.jumbotron').innerHTML = "<b>Aktuell spelare är " + playerName + " (" + playerChar + ")</b> ";
+  // Test för att se vad random får för värde.
+  console.log(random);
 
+document.querySelector('.jumbotron').innerHTML = "<b>Aktuell spelare är: " + playerName + " (" + playerChar + ") </b>";
 }
