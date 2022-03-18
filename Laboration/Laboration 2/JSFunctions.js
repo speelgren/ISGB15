@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /*
  * Globalt objekt som innehåller de attribut som ni skall använda.
@@ -29,27 +29,27 @@ oGameData.initGlobalObject = function() {
     //oGameData.gameField = Array('', '', '', '', '', '', '', '', '');
 
     //Indikerar tecknet som skall användas för spelare ett.
-    oGameData.playerOne = "X";
+    oGameData.playerOne = 'X';
 
     //Indikerar tecknet som skall användas för spelare två.
-    oGameData.playerTwo = "O";
+    oGameData.playerTwo = 'O';
 
-    //Kan anta värdet X eller O och indikerar vilken spelare som för tillfället skall lägga sin "bricka".
-    oGameData.currentPlayer = "";
+    //Kan anta värdet X eller O och indikerar vilken spelare som för tillfället skall lägga sin 'bricka'.
+    oGameData.currentPlayer = '';
 
     //Nickname för spelare ett som tilldelas från ett formulärelement,
-    oGameData.nickNamePlayerOne = "";
+    oGameData.nickNamePlayerOne = '';
 
     //Nickname för spelare två som tilldelas från ett formulärelement.
-    oGameData.nickNamePlayerTwo = "";
+    oGameData.nickNamePlayerTwo = '';
 
     //Färg för spelare ett som tilldelas från ett formulärelement.
-    oGameData.colorPlayerOne = "";
+    oGameData.colorPlayerOne = '';
 
     //Färg för spelare två som tilldelas från ett formulärelement.
-    oGameData.colorPlayerTwo = "";
+    oGameData.colorPlayerTwo = '';
 
-    //"Flagga" som indikerar om användaren klickat för checkboken.
+    //'Flagga' som indikerar om användaren klickat för checkboken.
     oGameData.timerEnabled = false;
 
     //Timerid om användaren har klickat för checkboxen.
@@ -91,7 +91,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[7] === 'X')
       && (oGameData.gameField[8] === 'X'))) {
 
-      console.log("Horizontal");
+      console.log('Horizontal');
       return 1;
     }
 
@@ -105,7 +105,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[7] === 'O')
       && (oGameData.gameField[8] === 'O'))) {
 
-      console.log("Horizontal");
+      console.log('Horizontal');
       return 2;
     }
 
@@ -123,7 +123,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[5] === 'X')
       && (oGameData.gameField[8] === 'X'))) {
 
-      console.log("Vertical");
+      console.log('Vertical');
       return 1;
     }
 
@@ -137,7 +137,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[5] === 'O')
       && (oGameData.gameField[8] === 'O'))) {
 
-      console.log("Vertical");
+      console.log('Vertical');
       return 2;
     }
 
@@ -149,7 +149,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[4] === 'X')
       && (oGameData.gameField[8] === 'X')) {
 
-      console.log("Left to Right");
+      console.log('Left to Right');
       return 1;
 
     }
@@ -158,7 +158,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[4] === 'O')
       && (oGameData.gameField[8] === 'O')) {
 
-      console.log("Left to Right");
+      console.log('Left to Right');
       return 2;
     }
 
@@ -170,7 +170,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[4] === 'X')
       && (oGameData.gameField[6]) === 'X') {
 
-      console.log("Right to Left");
+      console.log('Right to Left');
       return 1;
     }
 
@@ -178,7 +178,7 @@ oGameData.checkForGameOver = function() {
       && (oGameData.gameField[4] === 'O')
       && (oGameData.gameField[6]) === 'O') {
 
-      console.log("Right to Left");
+      console.log('Right to Left');
       return 2;
     }
 
@@ -210,7 +210,7 @@ oGameData.checkForGameOver = function() {
     || (diagonalLTR === 1)
     || (diagonalRTL === 1)) {
 
-      console.log("Win för X.");
+      console.log('Win för X.');
       return 1;
   }
 
@@ -219,7 +219,7 @@ oGameData.checkForGameOver = function() {
     || (diagonalLTR === 2)
     || (diagonalRTL === 2)) {
 
-      console.log("Win för O.");
+      console.log('Win för O.');
       return 2;
   }
 
@@ -227,56 +227,56 @@ oGameData.checkForGameOver = function() {
 
     if(draw == 3) {
 
-      console.log("Draw.");
+      console.log('Draw.');
       return 3;
 
     } else if(draw == 0) {
 
-      console.log("No winner.");
+      console.log('No winner.');
       return 0;
     }
   }
 
 }
 
-window.addEventListener("load", function(){
+window.addEventListener('load', function(){
 
 
-  document.getElementById("gameArea").classList.add('d-none')
+  document.getElementById('gameArea').classList.add('d-none')
 
  // oGameData.initGlobalObject();
 
-  this.document.getElementById("newGame").addEventListener("click", validateForm)
+  this.document.getElementById('newGame').addEventListener('click', validateForm)
 });
 
 function validateForm(){
 
   //Hämta in elementen med id först
-  let errormsgg = document.getElementById("errorMsg");
+  let errormsgg = document.getElementById('errorMsg');
   /*
-  oGameData.nickNamePlayerOne = document.getElementById("nick1").value;
-  oGameData.nickNamePlayerTwo = document.getElementById("nick2").value;
-  oGameData.colorPlayerOne = document.getElementById("color1").value;
-  oGameData.colorPlayerTwo = document.getElementById("color2").value;
+  oGameData.nickNamePlayerOne = document.getElementById('nick1').value;
+  oGameData.nickNamePlayerTwo = document.getElementById('nick2').value;
+  oGameData.colorPlayerOne = document.getElementById('color1').value;
+  oGameData.colorPlayerTwo = document.getElementById('color2').value;
   */
 
-  let nick1 = document.getElementById("nick1").value;
-  let nick2 = document.getElementById("nick2").value;
-  let color1 = document.getElementById("color1").value;
-  let color2 = document.getElementById("color2").value;
+  let nick1 = document.getElementById('nick1').value;
+  let nick2 = document.getElementById('nick2').value;
+  let color1 = document.getElementById('color1').value;
+  let color2 = document.getElementById('color2').value;
 
   try{
 
-    if(nick1.length < 5) throw "Måste vara längre än 5 bokstäver";
-    if(nick2.length < 5) throw "Måste vara långre än 5 bokstäver";
-    if(nick1 == nick2) throw "Samma namn";
+    if(nick1.length < 5) throw 'Måste vara längre än 5 bokstäver';
+    if(nick2.length < 5) throw 'Måste vara långre än 5 bokstäver';
+    if(nick1 == nick2) throw 'Samma namn';
 
     // Hexadecimal vit måste skrivas med små bokstäver.......... suck.
-    if(color1 === "#000000" ) throw "får inte vara svart spelare 1";
-    if(color1 === "#ffffff" ) throw "får inte vara vitt spelare 1";
-    if(color2 === "#000000" ) throw "får inte vara svart spelare 2";
-    if(color2 === "#ffffff" ) throw "får inte vara vitt spelare 2";
-    if(color1 === color2) throw "Samma färg";
+    if(color1 === '#000000' ) throw 'får inte vara svart spelare 1';
+    if(color1 === '#ffffff' ) throw 'får inte vara vitt spelare 1';
+    if(color2 === '#000000' ) throw 'får inte vara svart spelare 2';
+    if(color2 === '#ffffff' ) throw 'får inte vara vitt spelare 2';
+    if(color1 === color2) throw 'Samma färg';
 
     initiateGame();
   }
@@ -288,9 +288,9 @@ function validateForm(){
 
 function initiateGame(){
 
-  document.getElementById("divInForm").classList.add('class', 'd-none');
-  document.getElementById("gameArea").classList.remove('class', 'd-none');
-  document.getElementById("errorMsg").innerHTML = '';
+  document.getElementById('divInForm').classList.add('class', 'd-none');
+  document.getElementById('gameArea').classList.remove('class', 'd-none');
+  document.getElementById('errorMsg').innerHTML = '';
 
   oGameData.nickNamePlayerOne = nick1.value;
   oGameData.nickNamePlayerTwo = nick2.value;
@@ -304,7 +304,7 @@ function initiateGame(){
   console.log(oGameData.colorPlayerTwo);
   */
 
-  let spelplan = document.querySelectorAll("[data-id]");
+  let spelplan = document.querySelectorAll('[data-id]');
 
   for(let i = 0; i < spelplan.length; i++) {
     spelplan[i].textContent = '';
@@ -328,7 +328,7 @@ function initiateGame(){
   }
 
   // Test för att se vad random får för värde.
-  console.log(random);
+  console.log(random, playerName);
 
-document.querySelector(".jumbotron").innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
+document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
 }
