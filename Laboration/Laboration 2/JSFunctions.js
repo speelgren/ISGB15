@@ -239,35 +239,106 @@ oGameData.checkForGameOver = function() {
 
 }
 
-function initiateGame() {
+window.addEventListener("load", function(){
 
-  console.log("InitiateGame();");
+
+  document.getElementById("gameArea").classList.add('d-none')
+
+ // oGameData.initGlobalObject();
+
+  this.document.getElementById("newGame").addEventListener("click", validateForm)
+});
+
+function validateForm(){
+
+  //Hämta in elementen med id först
+  let errormsgg = document.getElementById("errorMsg");
+  /*
+  oGameData.nickNamePlayerOne = document.getElementById("nick1").value;
+  oGameData.nickNamePlayerTwo = document.getElementById("nick2").value;
+  oGameData.colorPlayerOne = document.getElementById("color1").value;
+  oGameData.colorPlayerTwo = document.getElementById("color2").value;
+  */
+
+  let nick1 = document.getElementById("nick1").value;
+  let nick2 = document.getElementById("nick2").value;
+  let color1 = document.getElementById("color1").value;
+  let color2 = document.getElementById("color2").value;
+
+  try{
+
+    if(nick1.length <= 5) throw "Måste vara längre än 5 bokstäver";
+    if(nick2.length <= 5) throw "Måste vara långre än 5 bokstäver";
+    if(nick1 == nick2) throw "Samma namn";
+
+    // Hexadecimal vit måste skrivas med små bokstäver.......... suck.
+    if(color1 === "#000000" ) throw "får inte vara svart spelare 1";
+    if(color1 === "#ffffff" ) throw "får inte vara vitt spelare 1";
+    if(color2 === "#000000" ) throw "får inte vara svart spelare 2";
+    if(color2 === "#ffffff" ) throw "får inte vara vitt spelare 2";
+    if(color1 === color2) throw "Samma färg";
+
+    initiateGame();
+  }
+    catch( err ){
+
+      errormsgg.textContent = "Testa igen, " + "   " + err;
+    }
 }
 
-function validateForm() {
+function initiateGame(){
+
+  document.getElementById("divInForm").classList.add('class', 'd-none');
+  document.getElementById("gameArea").classList.remove('class', 'd-none');
+  document.getElementById("errorMsg").innerHTML = '';
+
+  oGameData.nickNamePlayerOne = nick1.value;
+  oGameData.nickNamePlayerTwo = nick2.value;
+  oGameData.colorPlayerOne = color1.value;
+  oGameData.colorPlayerTwo = color2.value;
+
+  /* Test för att skriva ut värdet. Fungerar.
+  console.log(oGameData.nickNamePlayerOne);
+  console.log(oGameData.nickNamePlayerTwo);
+  console.log(oGameData.colorPlayerOne);
+  console.log(oGameData.colorPlayerTwo);
+  */
+
+  let spelplan = document.querySelectorAll("[data-id]");
+
+  for(let i = 0; i < spelplan.length; i++) {
+    spelplan[i].textContent = '';
+    spelplan[i].setAttribute('style', 'background-color: #ffffff');
+  }
+
+  let playerChar;
+  let playerName;
+
+  let random = Math.random();
 
 
   try {
 
+    if(random < 0.5) {
 
-  } catch (e) {
+      playerChar = oGameData.playerOne;
+      playerName = oGameData.nickNamePlayerOne;
+      oGameData.currentPlayer = oGameData.playerOne;
+    } else if(random >= 0.5) {
 
-    
+      playerChar = oGameData.playerTwo;
+      playerName = oGameData.nickNamePlayerTwo;
+      oGameData.currentPlayer = oGameData.playerTwo;
+    }
+    /* Test för att se vad random får för värde.
+    console.log(random);
+    */
+  } catch ( err ) {
+
+    // OM det sker ett fel?
+    errormsgg.textContent = "Fel... " + " " + err;
   }
 
+document.querySelector('.jumbotron').innerHTML = "<b>Aktuell spelare är " + playerName + " (" + playerChar + ")</b> ";
+
 }
-
-window.addEventListener('load', function( event ) {
-
-  oGameData.initGlobalObject();
-  document.getElementById('gameArea').classList.add('d-none');
-  // Lägg till d-none på klassen gameArea.
-  // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
-
-  let start = document.getElementById('newGame');
-  start.addEventListener('click', function( event ) {
-
-    validateForm();
-  });
-
-});
