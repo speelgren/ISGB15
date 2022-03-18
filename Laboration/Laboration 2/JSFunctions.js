@@ -239,29 +239,44 @@ oGameData.checkForGameOver = function() {
 
 }
 
-function validateForm() {
-  console.log("Anropet fungerar.");
+function initiateGame() {
 
+  console.log("InitiateGame();");
+
+}
+
+function validateForm() {
+
+  let nick1 = document.getElementById('nick1').value;
+  let nick2 = document.getElementById('nick2').value;
+
+  let color1 = document.getElementById('color1');
+  let color2 = document.getElementById('color2');
+
+  try {
+
+    if(nick1 !== nick2) throw 'olika';
+    if(nick1 >= 5) throw '>= 5';
+    if(nick2 >= 5) throw '>= 5';
+
+  } catch ( err ) {
+    initiateGame();
+  }
 
 }
 
 window.addEventListener('load', function() {
 
   oGameData.initGlobalObject();
-  document.getElementById("gameArea").classList.add("d-none");
+  document.getElementById('gameArea').classList.add('d-none');
   // Lägg till d-none på klassen gameArea.
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
 
   let start = document.querySelector('#newGame');
   start.addEventListener('click', function( start ) {
 
-    try {
 
-      validateForm();
-    } catch ( err ) {
-
-      start.preventDefault();
-    }
+    validateForm();
 
   });
 
