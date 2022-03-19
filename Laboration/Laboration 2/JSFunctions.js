@@ -260,10 +260,11 @@ function validateForm() {
 
       initiateGame();
     }
-      catch( e ){
+      catch( e ) {
 
         error.textContent = 'Fel: ' + e;
       }
+
 }
 
 function initiateGame() {
