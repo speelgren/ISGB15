@@ -66,17 +66,6 @@ oGameData.initGlobalObject = function() {
  * Funktionen tar inte emot några värden.
  */
 
-/*
-     [0, 1, 2], // Horizontal win
-     [3, 4, 5], // Horizontal win
-     [6, 7, 8], // Horizontal win
-     [0, 3, 6], // Vertical win
-     [1, 4, 7], // Vertical win
-     [2, 5, 8], // Vertical win
-     [0, 4, 8], // Diagonal win (left to right)
-     [2, 4, 6]  // Diagnoal win (right to left)
-*/
-
 oGameData.checkForGameOver = function() {
 
   function checkHorizontal() {
@@ -151,7 +140,6 @@ oGameData.checkForGameOver = function() {
 
       console.log('Left to Right');
       return 1;
-
     }
 
     else if((oGameData.gameField[0] === 'O')
@@ -205,91 +193,86 @@ oGameData.checkForGameOver = function() {
   let diagonalRTL = checkDiagonalRightToLeft();
   let draw = checkForDraw();
 
-  if((horizontal === 1)
-    || (vertical === 1)
-    || (diagonalLTR === 1)
-    || (diagonalRTL === 1)) {
+    if((horizontal === 1)
+      || (vertical === 1)
+      || (diagonalLTR === 1)
+      || (diagonalRTL === 1)) {
 
-      console.log('Win för X.');
-      return 1;
-  }
-
-  else if((horizontal === 2)
-    || (vertical === 2)
-    || (diagonalLTR === 2)
-    || (diagonalRTL === 2)) {
-
-      console.log('Win för O.');
-      return 2;
-  }
-
-  else {
-
-    if(draw == 3) {
-
-      console.log('Draw.');
-      return 3;
-
-    } else if(draw == 0) {
-
-      console.log('No winner.');
-      return 0;
+        console.log('Win för X.');
+        return 1;
     }
-  }
+
+    else if((horizontal === 2)
+      || (vertical === 2)
+      || (diagonalLTR === 2)
+      || (diagonalRTL === 2)) {
+
+        console.log('Win för O.');
+        return 2;
+    }
+
+    else {
+
+      if(draw == 3) {
+
+        console.log('Draw.');
+        return 3;
+
+      } else if(draw == 0) {
+
+        console.log('No winner.');
+        return 0;
+      }
+    }
 
 }
 
-window.addEventListener('load', function(){
+window.addEventListener('load', function() {
 
-
-  document.getElementById('gameArea').classList.add('d-none')
-
- // oGameData.initGlobalObject();
-
-  this.document.getElementById('newGame').addEventListener('click', validateForm)
+  oGameData.initGlobalObject();
+  document.getElementById('gameArea').classList.add('d-none');
+  document.getElementById('newGame').addEventListener('click', validateForm);
 });
 
-function validateForm(){
+function validateForm() {
 
-  //Hämta in elementen med id först
-  let errormsgg = document.getElementById('errorMsg');
-  /*
-  oGameData.nickNamePlayerOne = document.getElementById('nick1').value;
-  oGameData.nickNamePlayerTwo = document.getElementById('nick2').value;
-  oGameData.colorPlayerOne = document.getElementById('color1').value;
-  oGameData.colorPlayerTwo = document.getElementById('color2').value;
-  */
+  //Sparar errorMsg i variabeln error.
+  let error = document.getElementById('errorMsg');
 
+  //Sparar nickname och color i variabler för att korta ned text.
   let nick1 = document.getElementById('nick1').value;
   let nick2 = document.getElementById('nick2').value;
   let color1 = document.getElementById('color1').value;
   let color2 = document.getElementById('color2').value;
 
-  try{
+    try{
 
-    if(nick1.length < 5) throw 'Måste vara längre än 5 bokstäver';
-    if(nick2.length < 5) throw 'Måste vara långre än 5 bokstäver';
-    if(nick1 == nick2) throw 'Samma namn';
+      if(nick1.length < 5) throw 'Nickname måste vara längre än 5 bokstäver.';
+      if(nick2.length < 5) throw 'Nickname måste vara längre än 5 bokstäver.';
+      if(nick1 == nick2) throw 'Spelare får inte ha samma namn.';
 
-    // Hexadecimal vit måste skrivas med små bokstäver.......... suck.
-    if(color1 === '#000000' ) throw 'får inte vara svart spelare 1';
-    if(color1 === '#ffffff' ) throw 'får inte vara vitt spelare 1';
-    if(color2 === '#000000' ) throw 'får inte vara svart spelare 2';
-    if(color2 === '#ffffff' ) throw 'får inte vara vitt spelare 2';
-    if(color1 === color2) throw 'Samma färg';
+      //Hexadecimal vit måste skrivas med små bokstäver.......... suck.
+      if(color1 === '#000000' ) throw 'spelare 1 får inte välja svart.';
+      if(color1 === '#ffffff' ) throw 'spelare 1 får inte välja vit.';
+      if(color2 === '#000000' ) throw 'spelare 2 får inte välja svart.';
+      if(color2 === '#ffffff' ) throw 'spelare 2 får inte välja vit.';
+      if(color1 === color2) throw 'Samma färg';
 
-    initiateGame();
-  }
-    catch( err ){
-
-      errormsgg.textContent = 'Testa igen, ' + ' ' + err;
+      initiateGame();
     }
+      catch( e ){
+
+        error.textContent = 'Fel: ' + e;
+      }
 }
 
-function initiateGame(){
+function initiateGame() {
 
+  //lägger till class 'd-none' i divInForm
   document.getElementById('divInForm').classList.add('class', 'd-none');
+  //Tar bort class 'd-none' i gameArea
   document.getElementById('gameArea').classList.remove('class', 'd-none');
+  //"Rensar" innehållet i errorMsg
   document.getElementById('errorMsg').innerHTML = '';
 
   oGameData.nickNamePlayerOne = nick1.value;
@@ -304,31 +287,33 @@ function initiateGame(){
   console.log(oGameData.colorPlayerTwo);
   */
 
+  //Sparar alla data-id i spelplan
   let spelplan = document.querySelectorAll('[data-id]');
+    for(let i = 0; i < spelplan.length; i++) {
 
-  for(let i = 0; i < spelplan.length; i++) {
-    spelplan[i].textContent = '';
-    spelplan[i].setAttribute('style', 'background-color: #ffffff');
-  }
+      //"Rensar" td-elementen
+      spelplan[i].textContent = '';
+      spelplan[i].setAttribute('style', 'background-color: #ffffff'); //kom t.o.m. ihåg små bokstäver den här gången
+    }
 
   let playerChar;
   let playerName;
   let random = Math.random();
 
-  if(random < 0.5) {
+    if(random < 0.5) {
 
-    playerChar = oGameData.playerOne;
-    playerName = nick1.value;
-    oGameData.currentPlayer = oGameData.playerOne;
-  } else if (random >= 0.5){
+      playerChar = oGameData.playerOne;
+      playerName = nick1.value;
+      oGameData.currentPlayer = oGameData.playerOne;
+    } else if (random >= 0.5) {
 
-    playerChar = oGameData.playerTwo;
-    playerName = nick2.value;
-    oGameData.currentPlayer = oGameData.playerTwo;
-  }
+      playerChar = oGameData.playerTwo;
+      playerName = nick2.value;
+      oGameData.currentPlayer = oGameData.playerTwo;
+    }
 
-  // Test för att se vad random får för värde.
+  //Test för att se vad random får för värde.
   console.log(random, playerName);
 
-document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
+  document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
 }
