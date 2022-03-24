@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Kodexempel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      
+      #gameArea {
+        border: solid 1px blue;
+        background-color: aquamarine;
+        height: 500px;
+        max-width: 600px;
+        overflow: hidden;
+        cursor:crosshair;
+        position: relative;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .target {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: brown;
+        border-radius:20px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <a href="#" class="mybtn">Starta spelet</a>
+      </div>
+      <div id="gameArea">
+        <div id="score">Score: 0</div>
+        <div id="time">Time remaining: </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
