@@ -281,23 +281,20 @@ function initiateGame() {
   oGameData.colorPlayerOne = color1.value;
   oGameData.colorPlayerTwo = color2.value;
 
-  /* Test för att skriva ut värdet. Fungerar.
-  console.log(oGameData.nickNamePlayerOne);
-  console.log(oGameData.nickNamePlayerTwo);
-  console.log(oGameData.colorPlayerOne);
-  console.log(oGameData.colorPlayerTwo);
-  */
-
   //Sparar alla data-id i spelplan
   let spelplan = document.querySelectorAll('[data-id]');
     for(let i = 0; i < spelplan.length; i++) {
 
       //"Rensar" td-elementen
       spelplan[i].textContent = '';
-      spelplan[i].setAttribute('style', 'background-color: #ffffff'); //kom t.o.m. ihåg små bokstäver den här gången
+      spelplan[i].setAttribute('style', 'background-color: #ffffff');
+      //kom t.o.m. ihåg små bokstäver den här gången
+
+      //Lägg till lyssnare på spelplan.
+      spelplan[i].addEventListener('click', executeMove);
     }
 
-  let playerChar;
+  let playerChar;<
   let playerName;
   let random = Math.random();
 
@@ -314,7 +311,29 @@ function initiateGame() {
     }
 
   //Test för att se vad random får för värde.
-  console.log(random, playerName);
+  //console.log(random, playerName);
 
   document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
+}
+
+function executeMove(event) {
+
+  let click = event.target;
+
+  if(click.tagName == 'TD') {
+
+    if(click.textContent !== 'X'
+      || click.textContent !== 'O') {
+
+      let id = click.getAttribute('[data-id]');
+      oGameData.gameField[id] = oGameData.currentPlayer;
+      console.log(oGameData.currentPlayer);
+    } else {
+
+      console.log('inte ledig');
+    }
+
+    console.log("test");
+
+  }
 }
