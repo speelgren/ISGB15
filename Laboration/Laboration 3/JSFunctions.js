@@ -230,20 +230,20 @@ oGameData.checkForGameOver = function() {
 window.addEventListener('load', function() {
 
   oGameData.initGlobalObject();
-  document.getElementById('gameArea').classList.add('d-none');
-  document.getElementById('newGame').addEventListener('click', validateForm);
+  document.querySelector('#gameArea').classList.add('d-none');
+  document.querySelector('#newGame').addEventListener('click', validateForm);
 });
 
 function validateForm() {
 
   //Sparar errorMsg i variabeln error.
-  let error = document.getElementById('errorMsg');
+  let error = document.querySelector('#errorMsg');
 
   //Sparar nickname och color i variabler för att korta ned text.
-  let nick1 = document.getElementById('nick1').value;
-  let nick2 = document.getElementById('nick2').value;
-  let color1 = document.getElementById('color1').value;
-  let color2 = document.getElementById('color2').value;
+  let nick1 = document.querySelector('#nick1').value;
+  let nick2 = document.querySelector('#nick2').value;
+  let color1 = document.querySelector('#color1').value;
+  let color2 = document.querySelector('#color2').value;
 
     try{
 
@@ -270,11 +270,11 @@ function validateForm() {
 function initiateGame() {
 
   //lägger till class 'd-none' i divInForm
-  document.getElementById('divInForm').classList.add('class', 'd-none');
+  document.querySelector('#divInForm').classList.add('d-none');
   //Tar bort class 'd-none' i gameArea
-  document.getElementById('gameArea').classList.remove('class', 'd-none');
+  document.querySelector('#gameArea').classList.remove('d-none');
   //"Rensar" innehållet i errorMsg
-  document.getElementById('errorMsg').innerHTML = '';
+  document.querySelector('#errorMsg').innerHTML = '';
 
   oGameData.nickNamePlayerOne = nick1.value;
   oGameData.nickNamePlayerTwo = nick2.value;
@@ -282,19 +282,17 @@ function initiateGame() {
   oGameData.colorPlayerTwo = color2.value;
 
   //Sparar alla data-id i spelplan
-  let spelplan = document.querySelectorAll('[data-id]');
+  let spelplan = document.querySelectorAll('td');
     for(let i = 0; i < spelplan.length; i++) {
 
       //"Rensar" td-elementen
       spelplan[i].textContent = '';
-      spelplan[i].setAttribute('style', 'background-color: #ffffff');
+      spelplan[i].style.backgroundColor = '#ffffff';
       //kom t.o.m. ihåg små bokstäver den här gången
-
-      //Lägg till lyssnare på spelplan.
-      spelplan[i].addEventListener('click', executeMove);
+      //spelplan[i].addEventListener('click', executeMove);
     }
 
-  let playerChar;<
+  let playerChar;
   let playerName;
   let random = Math.random();
 
@@ -314,26 +312,68 @@ function initiateGame() {
   //console.log(random, playerName);
 
   document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
+
+  //Sista funktionen i initiateGame();
+  let table = document.querySelector('table');
+  table.addEventListener('click', executeMove);
 }
 
 function executeMove(event) {
 
   let click = event.target;
 
-  if(click.tagName == 'TD') {
+    //Om klick sker på elementet td.
+    if(click.tagName == 'TD') {
 
-    if(click.textContent !== 'X'
-      || click.textContent !== 'O') {
+      //Kontrollera så att cellen är ledig.
+      if((click.textContent !== 'X')
+        && (click.textContent !== 'O')) {
 
-      let id = click.getAttribute('[data-id]');
-      oGameData.gameField[id] = oGameData.currentPlayer;
-      console.log(oGameData.currentPlayer);
-    } else {
+          //Hämta ut data-id och lägg till currentPlayer på cellen.
+          let data_id = click.getAttribute('data-id');
+          oGameData.gameField[data_id] = oGameData.currentPlayer;
 
-      console.log('inte ledig');
+            if(oGameData.currentPlayer == oGameData.playerOne) {
+
+              click.textContent = oGameData.playerOne;
+              click.style.backgroundColor = color1.value;
+
+              //Ändra currentPlayer till nästa spelare.
+              oGameData.currentPlayer = oGameData.playerTwo;
+              document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ') </b>';
+            } else if(oGameData.currentPlayer == oGameData.playerTwo) {
+
+              click.textContent = oGameData.playerTwo;
+              click.style.backgroundColor = color2.value;
+
+              //Ändra currentPlayer till nästa spelare.
+              oGameData.currentPlayer = oGameData.playerOne;
+              document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ') </b>';
+            }
+
+            let checkForWin = oGameData.checkForGameOver();
+
+            if(checkForWin == 1
+              || checkForWin == 2
+              || checkForWin == 3) {
+                //Ta bort eventlistener och class d-none
+                this.removeEventListener('click', executeMove);
+                document.querySelector('#divInForm').classList.remove('d-none');
+
+                if(checkForWin == 1) {
+
+                  document.querySelector('.jumbotron').innerHTML = '<b>Vinnare: ' + nick1.value + ' (' + oGameData.playerOne + ')! Spela igen? </b>';
+                } else if(checkForWin == 2) {
+
+                  document.querySelector('.jumbotron').innerHTML = '<b>Vinnare: ' + nick2.value + ' (' + oGameData.playerTwo + ')! Spela igen? </b>';
+                } else if(checkForWin == 3 || checkForWin == 0) {
+
+                  document.querySelector('.jumbotron').innerHTML = '<b>Oavgjort. Spela igen?</b>';
+                }
+
+                document.querySelector('#gameArea').classList.add('d-none');
+                oGameData.initGlobalObject();
+            }
+      }
     }
-
-    console.log("test");
-
-  }
 }
