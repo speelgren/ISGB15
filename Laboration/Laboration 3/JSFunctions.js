@@ -329,7 +329,7 @@ function executeMove(event) {
       if((click.textContent !== 'X')
         && (click.textContent !== 'O')) {
 
-          //Hämta ut data-id och lägg till currentPlayer på cellen.
+          //Om cellen är ledig: hämta ut data-id och lägg till currentPlayer på cellen.
           let data_id = click.getAttribute('data-id');
           oGameData.gameField[data_id] = oGameData.currentPlayer;
 
@@ -338,7 +338,7 @@ function executeMove(event) {
               click.textContent = oGameData.playerOne;
               click.style.backgroundColor = color1.value;
 
-              //Ändra currentPlayer till nästa spelare.
+              //Ändra currentPlayer till nästa spelare när spelaren har gjort sitt drag.
               oGameData.currentPlayer = oGameData.playerTwo;
               document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ') </b>';
             } else if(oGameData.currentPlayer == oGameData.playerTwo) {
@@ -374,6 +374,6 @@ function executeMove(event) {
                 document.querySelector('#gameArea').classList.add('d-none');
                 oGameData.initGlobalObject();
             }
-      }
+        }
     }
 }
