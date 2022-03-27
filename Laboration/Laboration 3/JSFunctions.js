@@ -371,6 +371,7 @@ function executeMove(event) {
                   document.querySelector('.jumbotron').innerHTML = '<b>Oavgjort. Spela igen?</b>';
                 }
 
+                //Lägg till d-none på #gameArea
                 document.querySelector('#gameArea').classList.add('d-none');
                 oGameData.initGlobalObject();
             }
