@@ -311,7 +311,7 @@ function initiateGame() {
   //Test för att se vad random får för värde.
   //console.log(random, playerName);
 
-  document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
+  document.querySelector('h1').innerHTML = '<b>Aktuell spelare är: ' + playerName + ' (' + playerChar + ') </b>';
 
   //Sista funktionen i initiateGame();
   let table = document.querySelector('table');
@@ -340,7 +340,7 @@ function executeMove(event) {
 
               //Ändra currentPlayer till nästa spelare när spelaren har gjort sitt drag.
               oGameData.currentPlayer = oGameData.playerTwo;
-              document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ') </b>';
+              document.querySelector('h1').innerHTML = '<b>Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ') </b>';
             } else if(oGameData.currentPlayer == oGameData.playerTwo) {
 
               click.textContent = oGameData.playerTwo;
@@ -348,7 +348,7 @@ function executeMove(event) {
 
               //Ändra currentPlayer till nästa spelare.
               oGameData.currentPlayer = oGameData.playerOne;
-              document.querySelector('.jumbotron').innerHTML = '<b>Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ') </b>';
+              document.querySelector('h1').innerHTML = '<b>Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ') </b>';
             }
 
             let checkForWin = oGameData.checkForGameOver();
@@ -362,13 +362,13 @@ function executeMove(event) {
 
                 if(checkForWin == 1) {
 
-                  document.querySelector('.jumbotron').innerHTML = '<b>Vinnare: ' + nick1.value + ' (' + oGameData.playerOne + ')! Spela igen? </b>';
+                  document.querySelector('h1').innerHTML = '<b>Vinnare: ' + nick1.value + ' (' + oGameData.playerOne + ')! Spela igen? </b>';
                 } else if(checkForWin == 2) {
 
-                  document.querySelector('.jumbotron').innerHTML = '<b>Vinnare: ' + nick2.value + ' (' + oGameData.playerTwo + ')! Spela igen? </b>';
+                  document.querySelector('h1').innerHTML = '<b>Vinnare: ' + nick2.value + ' (' + oGameData.playerTwo + ')! Spela igen? </b>';
                 } else if(checkForWin == 3 || checkForWin == 0) {
 
-                  document.querySelector('.jumbotron').innerHTML = '<b>Oavgjort. Spela igen?</b>';
+                  document.querySelector('h1').innerHTML = '<b>Oavgjort. Spela igen?</b>';
                 }
 
                 //Lägg till d-none på #gameArea
