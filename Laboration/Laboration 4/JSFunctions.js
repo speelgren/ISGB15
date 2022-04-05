@@ -378,3 +378,10 @@ function executeMove(event) {
         }
     }
 }
+
+//TIMER
+
+function startTimer() {
+
+
+}
