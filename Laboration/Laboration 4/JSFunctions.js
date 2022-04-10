@@ -69,6 +69,11 @@ oGameData.initGlobalObject = function() {
 
 oGameData.checkForGameOver = function() {
 
+  /*
+   * Laborationsuppgift 1.
+   *
+  */
+
   function checkHorizontal() {
 
     if(((oGameData.gameField[0] === 'X')
@@ -162,7 +167,6 @@ oGameData.checkForGameOver = function() {
 
       return 2;
     }
-
   }
 
   function checkForDraw() {
@@ -177,7 +181,6 @@ oGameData.checkForGameOver = function() {
 
       return 0;
     }
-
   }
 
   let horizontal = checkHorizontal();
@@ -213,11 +216,17 @@ oGameData.checkForGameOver = function() {
 
       } else if(draw == 0) {
 
+        console.log('No winner.');
         return 0;
       }
     }
-
 }
+
+/*
+ * Laborationsuppgift 2.
+ * Ungefär.
+ *
+*/
 
 window.addEventListener('load', function() {
 
@@ -245,11 +254,11 @@ function validateForm() {
       if(nick1 == nick2) throw 'Spelare får inte ha samma namn.';
 
       //Hexadecimal vit måste skrivas med små bokstäver.......... suck.
-      if(color1 === '#000000' ) throw 'spelare 1 får inte välja svart.';
-      if(color1 === '#ffffff' ) throw 'spelare 1 får inte välja vit.';
-      if(color2 === '#000000' ) throw 'spelare 2 får inte välja svart.';
-      if(color2 === '#ffffff' ) throw 'spelare 2 får inte välja vit.';
-      if(color1 === color2) throw 'Samma färg';
+      if(color1 === '#000000' ) throw 'Spelare 1 får inte välja svart.';
+      if(color1 === '#ffffff' ) throw 'Spelare 1 får inte välja vit.';
+      if(color2 === '#000000' ) throw 'Spelare 2 får inte välja svart.';
+      if(color2 === '#ffffff' ) throw 'Spelare 2 får inte välja vit.';
+      if(color1 === color2) throw 'Spelare får inte ha samma färg';
 
       initiateGame();
     }
@@ -257,12 +266,13 @@ function validateForm() {
 
         error.textContent = 'Fel: ' + e;
       }
-
 }
 
 function initiateGame() {
 
+  //Gömmer "Vill du begränsa tiden till 5 sekunder per drag?"
   document.querySelector('#timerCheckbox').classList.add('hidden');
+  //Om checkboxen är iklickad så startar intervallet changePlayer:
   if(document.querySelector('#timerCheckbox').checked) {
 
     oGameData.intervalID = setInterval(changePlayer, 5000);
@@ -307,21 +317,22 @@ function initiateGame() {
       oGameData.currentPlayer = oGameData.playerTwo;
     }
 
-  //Test för att se vad random får för värde.
-  //console.log(random, playerName);
-
   document.querySelector('h1').textContent = 'Aktuell spelare är: ' + playerName + ' (' + playerChar + ')';
 
-  //Sista funktionen i initiateGame();
   let table = document.querySelector('table');
   table.addEventListener('click', executeMove);
 }
 
+/*
+ * Laborationsuppgift 3.
+ * Ungefär.
+*/
+
 function executeMove(event) {
 
   var h1 = document.querySelector('h1');
-  var nodePlayer1 = document.createTextNode('Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')');
-  var nodePlayer2 = document.createTextNode('Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')');
+  let nodePlayer1 = document.createTextNode('Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')');
+  let nodePlayer2 = document.createTextNode('Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')');
 
   if(document.querySelector('#timerCheckbox').checked) {
 
@@ -351,8 +362,8 @@ function executeMove(event) {
               //Ändra currentPlayer till nästa spelare när spelaren har gjort sitt drag.
               oGameData.currentPlayer = oGameData.playerTwo;
 
-              let oldNode = document.querySelector('h1').lastChild;
-              document.querySelector('h1').removeChild(oldNode);
+              let lastChild = document.querySelector('h1').lastChild;
+              document.querySelector('h1').removeChild(lastChild);
               h1.appendChild(nodePlayer2);
             } else if(oGameData.currentPlayer == oGameData.playerTwo) {
 
@@ -362,8 +373,8 @@ function executeMove(event) {
               //Ändra currentPlayer till nästa spelare.
               oGameData.currentPlayer = oGameData.playerOne;
 
-              let oldNode = document.querySelector('h1').lastChild;
-              document.querySelector('h1').removeChild(oldNode);
+              let lastChild = document.querySelector('h1').lastChild;
+              document.querySelector('h1').removeChild(lastChild);
               h1.appendChild(nodePlayer1);
             }
 
@@ -379,22 +390,22 @@ function executeMove(event) {
                 this.removeEventListener('click', executeMove);
                 document.querySelector('#divInForm').classList.remove('d-none');
 
-                let oldNode = document.querySelector('h1').lastChild;
+                let lastChild = document.querySelector('h1').lastChild;
                 let nodePlayer1Win = document.createTextNode('Vinnare: ' + nick1.value + ' (' + oGameData.playerOne + ')! Spela igen?');
                 let nodePlayer2Win = document.createTextNode('Vinnare: ' + nick2.value + ' (' + oGameData.playerTwo + ')! Spela igen?');
                 let nodeDraw = document.createTextNode('Oavgjort. Spela igen?');
 
                 if(checkForWin == 1) {
 
-                  document.querySelector('h1').removeChild(oldNode);
+                  document.querySelector('h1').removeChild(lastChild);
                   document.querySelector('h1').appendChild(nodePlayer1Win);
                 } else if(checkForWin == 2) {
 
-                  document.querySelector('h1').removeChild(oldNode);
+                  document.querySelector('h1').removeChild(lastChild);
                   document.querySelector('h1').appendChild(nodePlayer2Win);
                 } else if(checkForWin == 3 || checkForWin == 0) {
 
-                  document.querySelector('h1').removeChild(oldNode);
+                  document.querySelector('h1').removeChild(lastChild);
                   document.querySelector('h1').appendChild(nodeDraw);
                 }
 
@@ -406,39 +417,45 @@ function executeMove(event) {
     }
 }
 
-//TIMER
+/*
+ * Laborationsuppgift 4.
+ * Generellt: gjort koden mer unobtrusive genom att ta bort innerHTML och textContent.
+ *
+*/
+
+//Checkbox för timer:
 function timerCheckbox() {
 
-  let timerH6 = document.createElement('h6');
-  let timerCheckbox = document.createElement('input');
-  timerCheckbox.setAttribute('type', 'checkbox');
-  timerCheckbox.setAttribute('id', 'timerCheckbox');
-  let checkboxText = document.createTextNode('Vill du begränsa tiden till 5 sekunder per drag? ');
-  timerH6.appendChild(checkboxText);
-  timerH6.style.padding = '15px 0px 0px 15px';
+  let timerH6 = document.createElement('h6'); //texten såg bäst ut i en h6-tag.
+  let timerCheckbox = document.createElement('input'); //skapar input-element (timerCheckbox).
+  timerCheckbox.setAttribute('type', 'checkbox'); //ger timerCheckbox typ checkbox.
+  timerCheckbox.setAttribute('id', 'timerCheckbox'); //ger timerCheckbox id #timerCheckbox.
+  let checkboxText = document.createTextNode('Vill du begränsa tiden till 5 sekunder per drag?'); //skapar textNode.
+  timerH6.appendChild(checkboxText); //append textNode till <h6>
+  timerH6.style.padding = '15px 0px 0px 15px'; //ger padding för att det ska se bättre ut.
 
   let divInForm = document.querySelector('#divInForm');
   let divWithA = document.querySelector('#divWithA');
-  divInForm.insertBefore(timerH6, divWithA);
-  timerH6.appendChild(timerCheckbox);
+  divInForm.insertBefore(timerH6, divWithA); //lägger in texten innan #divWithA
+  timerH6.appendChild(timerCheckbox); //lägger till checkbox vid texten.
 }
 
 function changePlayer() {
 
-  // Inspiration ang. oldNode från https://webplatform.github.io/docs/dom/tutorials/adding_and_deleting_elements/
-  let oldNode = document.querySelector('h1').lastChild;
-  var nodePlayer1 = document.createTextNode('Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')');
-  var nodePlayer2 = document.createTextNode('Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')');
+  // Inspiration ang. lastChild från https://webplatform.github.io/docs/dom/tutorials/adding_and_deleting_elements/
+  let lastChild = document.querySelector('h1').lastChild;
+  let nodePlayer1 = document.createTextNode('Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')');
+  let nodePlayer2 = document.createTextNode('Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')');
 
   if(oGameData.currentPlayer == oGameData.playerOne) {
 
-    oGameData.currentPlayer = oGameData.playerTwo;
-    document.querySelector('h1').removeChild(oldNode);
-    document.querySelector('h1').appendChild(nodePlayer2);
+    oGameData.currentPlayer = oGameData.playerTwo; //byter spelare vid 5 sekunder.
+    document.querySelector('h1').removeChild(lastChild); //tar bort lastChild av h1.
+    document.querySelector('h1').appendChild(nodePlayer2); //append nodePlayer2 till h1.
   } else {
 
-    oGameData.currentPlayer = oGameData.playerOne;
-    document.querySelector('h1').removeChild(oldNode);
-    document.querySelector('h1').appendChild(nodePlayer1);
+    oGameData.currentPlayer = oGameData.playerOne; //byter spelare vid 5 sekunder.
+    document.querySelector('h1').removeChild(lastChild); //tar bort lastChild av h1.
+    document.querySelector('h1').appendChild(nodePlayer1); //append nodePlayer1 till h1.
   }
 }
