@@ -5,7 +5,6 @@
  * Initieras genom anrop till funktionern initGlobalObject().
  */
 let oGameData = {};
-oGameData.intervalID = null;
 
 /*
  * Initerar det globala objektet med de attribut som ni skall använda er av.
@@ -275,7 +274,7 @@ function initiateGame() {
   //Om checkboxen är iklickad så startar intervallet changePlayer:
   if(document.querySelector('#timerCheckbox').checked) {
 
-    oGameData.intervalID = setInterval(changePlayer, 5000);
+    oGameData.timerId = setInterval(changePlayer, 5000);
   }
 
   //lägger till class 'd-none' i divInForm
@@ -337,8 +336,8 @@ function executeMove(event) {
   if(document.querySelector('#timerCheckbox').checked) {
 
     console.log('checked');
-    clearInterval(oGameData.intervalID);
-    oGameData.intervalID = setInterval(changePlayer, 5000);
+    clearInterval(oGameData.timerId);
+    oGameData.timerId = setInterval(changePlayer, 5000);
   }
 
   let click = event.target;
@@ -385,7 +384,7 @@ function executeMove(event) {
               || checkForWin == 3) {
 
                 //clearInterval när en spelare vunnit/vid oavgort.
-                clearInterval(oGameData.intervalID);
+                clearInterval(oGameData.timerId);
                 //Ta bort eventlistener och class d-none
                 this.removeEventListener('click', executeMove);
                 document.querySelector('#divInForm').classList.remove('d-none');
@@ -430,10 +429,9 @@ function timerCheckbox() {
   let timerCheckbox = document.createElement('input'); //skapar input-element (timerCheckbox).
   timerCheckbox.setAttribute('type', 'checkbox'); //ger timerCheckbox typ checkbox.
   timerCheckbox.setAttribute('id', 'timerCheckbox'); //ger timerCheckbox id #timerCheckbox.
-  let checkboxText = document.createTextNode('Vill du begränsa tiden till 5 sekunder per drag?'); //skapar textNode.
-  timerH6.appendChild(checkboxText); //append textNode till <h6>
+  let checkboxText = document.createTextNode('Vill du begränsa tiden till 5 sekunder per drag? '); //skapar textNode.
+  timerH6.appendChild(checkboxText); //append textNode till h6-elementet
   timerH6.style.padding = '15px 0px 0px 15px'; //ger padding för att det ska se bättre ut.
-
   let divInForm = document.querySelector('#divInForm');
   let divWithA = document.querySelector('#divWithA');
   divInForm.insertBefore(timerH6, divWithA); //lägger in texten innan #divWithA
