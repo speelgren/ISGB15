@@ -6,7 +6,6 @@
  */
 let oGameData = {};
 oGameData.intervalID = null;
-oGameData.time = null;
 
 /*
  * Initerar det globala objektet med de attribut som ni skall använda er av.
@@ -214,7 +213,6 @@ oGameData.checkForGameOver = function() {
 
       } else if(draw == 0) {
 
-        console.log('No winner.');
         return 0;
       }
     }
@@ -321,9 +319,13 @@ function initiateGame() {
 
 function executeMove(event) {
 
+  var h1 = document.querySelector('h1');
+  var nodePlayer1 = document.createTextNode('Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')');
+  var nodePlayer2 = document.createTextNode('Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')');
+
   if(document.querySelector('#timerCheckbox').checked) {
 
-    console.log('checked again');
+    console.log('checked');
     clearInterval(oGameData.intervalID);
     oGameData.intervalID = setInterval(changePlayer, 5000);
   }
@@ -348,7 +350,10 @@ function executeMove(event) {
 
               //Ändra currentPlayer till nästa spelare när spelaren har gjort sitt drag.
               oGameData.currentPlayer = oGameData.playerTwo;
-              document.querySelector('h1').textContent = 'Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')';
+
+              let oldNode = document.querySelector('h1').lastChild;
+              document.querySelector('h1').removeChild(oldNode);
+              h1.appendChild(nodePlayer2);
             } else if(oGameData.currentPlayer == oGameData.playerTwo) {
 
               click.textContent = oGameData.playerTwo;
@@ -356,7 +361,10 @@ function executeMove(event) {
 
               //Ändra currentPlayer till nästa spelare.
               oGameData.currentPlayer = oGameData.playerOne;
-              document.querySelector('h1').textContent = 'Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')';
+
+              let oldNode = document.querySelector('h1').lastChild;
+              document.querySelector('h1').removeChild(oldNode);
+              h1.appendChild(nodePlayer1);
             }
 
             let checkForWin = oGameData.checkForGameOver();
@@ -371,15 +379,23 @@ function executeMove(event) {
                 this.removeEventListener('click', executeMove);
                 document.querySelector('#divInForm').classList.remove('d-none');
 
+                let oldNode = document.querySelector('h1').lastChild;
+                let nodePlayer1Win = document.createTextNode('Vinnare: ' + nick1.value + ' (' + oGameData.playerOne + ')! Spela igen?');
+                let nodePlayer2Win = document.createTextNode('Vinnare: ' + nick2.value + ' (' + oGameData.playerTwo + ')! Spela igen?');
+                let nodeDraw = document.createTextNode('Oavgjort. Spela igen?');
+
                 if(checkForWin == 1) {
 
-                  document.querySelector('h1').textContent = 'Vinnare: ' + nick1.value + ' (' + oGameData.playerOne + ')! Spela igen?';
+                  document.querySelector('h1').removeChild(oldNode);
+                  document.querySelector('h1').appendChild(nodePlayer1Win);
                 } else if(checkForWin == 2) {
 
-                  document.querySelector('h1').textContent = 'Vinnare: ' + nick2.value + ' (' + oGameData.playerTwo + ')! Spela igen?';
+                  document.querySelector('h1').removeChild(oldNode);
+                  document.querySelector('h1').appendChild(nodePlayer2Win);
                 } else if(checkForWin == 3 || checkForWin == 0) {
 
-                  document.querySelector('h1').textContent = 'Oavgjort. Spela igen?';
+                  document.querySelector('h1').removeChild(oldNode);
+                  document.querySelector('h1').appendChild(nodeDraw);
                 }
 
                 //Lägg till d-none på #gameArea
@@ -409,13 +425,20 @@ function timerCheckbox() {
 
 function changePlayer() {
 
+  // Inspiration ang. oldNode från https://webplatform.github.io/docs/dom/tutorials/adding_and_deleting_elements/
+  let oldNode = document.querySelector('h1').lastChild;
+  var nodePlayer1 = document.createTextNode('Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')');
+  var nodePlayer2 = document.createTextNode('Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')');
+
   if(oGameData.currentPlayer == oGameData.playerOne) {
 
     oGameData.currentPlayer = oGameData.playerTwo;
-    document.querySelector('h1').textContent = 'Aktuell spelare är: ' + nick2.value + ' (' + oGameData.playerTwo + ')';
+    document.querySelector('h1').removeChild(oldNode);
+    document.querySelector('h1').appendChild(nodePlayer2);
   } else {
 
     oGameData.currentPlayer = oGameData.playerOne;
-    document.querySelector('h1').textContent = 'Aktuell spelare är: ' + nick1.value + ' (' + oGameData.playerOne + ')';
+    document.querySelector('h1').removeChild(oldNode);
+    document.querySelector('h1').appendChild(nodePlayer1);
   }
 }
