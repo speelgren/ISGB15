@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="jumbotron text-center">
+      <h1>JavaScript</h1>
+    </div>
+    <form method="post">
+      <div id="error"></div>
+      <label for="email">Fyll i Email</label><br>
+      <label type="text" id="email" placeholder="epost@epost.com"></label><br>
+      <p>Välj ditt ärende</p>
+      <input type="radio" name="arende" value="bird">Kontakta mig om fåglar<br>
+      <input type="radio" name="arende" value="boat">Kontakta mig om båtar<br>
+      <input type="radio" name="arende" value="fish">Kontakta mig om fiske<br>
+      <input type="radio" name="arende" value="travel">Kontakta mig om resor<br>
+
+      <label for="klockslag">Välj en tid när du vill bli kontaktad: </label>
+      <select id="klockslag">
+        <option value="8">Klockan 8:00-9:30</option>
+        <option value="8.5">Klockan 8:30-9:00</option>
+        <option value="9">klockan 9:00-9:30</option>
+      </select><br>
+      <<button type="submit">Skicka förfrågan</button><br><br>
+    </form>
+    <script src="index.js"></script>
+</body>
+</html>
