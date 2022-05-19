@@ -7,11 +7,11 @@ window.addEventListener('load', () => {
 
 const validate = (event) => {
 
-  try {
+  let email = document.querySelector('#email').value;
+  let fisk = document.querySelector('input[value="fish"]');
+  let klocka = document.querySelector('#klockslag').value
 
-    let email = document.querySelector('#email').value;
-    let fisk = document.querySelector('input[value="fish"]');
-    let klocka = document.querySelector('#klockslag').value
+  try {
 
     if(email.length < 6 ) throw new Error ('För kort email');
     if(fisk.checked != true) throw new Error ('Välj fisk');
