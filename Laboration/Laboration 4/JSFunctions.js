@@ -420,7 +420,7 @@ function executeMove(event) {
  * Laborationsuppgift 4.
  * Generellt: gjort koden mer unobtrusive genom att ta bort innerHTML och textContent.
  *
-*/
+ */
 
 //Checkbox för timer:
 function timerCheckbox() {
