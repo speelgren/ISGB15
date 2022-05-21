@@ -1,0 +1,27 @@
+Fråga 1.
+
+Författarna av kurslitteraturen DOM Scripting Web Design with JavaScript and the
+Document Object Model beskriver fyra olika varianter, två som är obtrusive och två som
+är unobtrusive, att skapa lyssnare för ett a-element. Redogör kortfattat för respektive
+variant samt skriv de instruktioner som krävs för att med respektive variant anropa
+funktionen demo() när användaren klickar på länken.
+
+Svar:
+
+Har letat efter svaret, men kan inte hitta det i kurslitteraturen. Variationerna jag kan komma på är:
+
+Obtrusive JavaScript
+1.
+<a href="#" onclick="demo();"></a>
+
+2.
+<a href="javascript:demo();"></a>
+
+Unobtrusive JavaScript
+1.
+let a = document.querySelector('a');
+a.addEventListener('click', demo);
+
+2.
+let a = document.querySelector('a');
+a.onclick = demo;

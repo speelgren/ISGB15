@@ -2,7 +2,7 @@
 
 window.addEventListener('load', () => {
 
-  console.log('DOM loaded....');
+  console.log('DOM loaded');
   addClickListenersToButtons();
 });
 

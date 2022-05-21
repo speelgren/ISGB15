@@ -2,7 +2,7 @@
 
 window.addEventListener('load', () => {
 
-  console.log('dom skapad');
+  console.log('DOM loaded');
 });
 
 function changeTextInDivs() {

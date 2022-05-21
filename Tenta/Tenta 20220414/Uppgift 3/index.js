@@ -2,6 +2,8 @@
 
 window.addEventListener('load', () => {
 
+  console.log('DOM loaded');
+
   document.querySelector('form').addEventListener('submit', validate);
 });
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="sv">
+   <head>
+   <meta charset="utf-8">
+   <title>Uppgift 5</title>
+   </head>
+ <body>
+   <form method="post" onsubmit="return validate();">
+     <h1 id="errmsg"></h1>
+     <h1>Undersökning - fyll i dina svar</h1>
+     <div>
+       <input type="radio" id="rbMan" name="rbGender">
+       <label>Man</label>
+       <input type="radio" id="rbKvinna" name="rbGender">
+       <label>Kvinna</label>
+       <input type="radio" id="rbAnnan" name="rbGender">
+       <label>Annat</label>
+     </div>
+     <div>
+       <label for="txtAge">Fyll i din ålder</label>
+       <input type="text" id="txtAge">
+     </div>
+     <div>
+       <label for="txtsubject">Beskriv ditt svar (Max 100 tecken)</label>
+       <br>
+       <label>Antal återstående tecken <span id="nbrChr"></span></label>
+       <br>
+       <textarea id="txtAnswer" rows="10" cols="30"></textarea>
+     </div>
+   <input type="submit" value="Skicka">
+   </form>
+   <script src="index.js"></script>
+ </body>
+</html>
