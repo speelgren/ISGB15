@@ -9,13 +9,11 @@ window.addEventListener('load', () => {
   /* 3d */
 const prepareGUI = () => {
 
-  let p = document.querySelectorAll('p');
   let body = document.querySelector('body');
+  let p = document.querySelectorAll('p');
   let inputRange = document.querySelector('input[type=range]');
   let button = document.querySelector('input[type=button]');
   let sliderValue = document.querySelector('#sliderValue');
-
-  let range = inputRange.value;
 
   p.forEach(pElement => {
 
@@ -46,7 +44,7 @@ const mouseOverP = event => {
 const createElements = (body, inputRange) => {
 
     for(let i = 0; i < inputRange.value; i++) {
-      
+
       let node = document.createTextNode(`${i + 1} `);
       body.appendChild(node);
     }

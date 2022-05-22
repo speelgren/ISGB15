@@ -7,14 +7,14 @@ window.addEventListener('load', () => {
   let li = document.querySelectorAll('ul li');
   let sida = document.querySelector('#sida');
 
-  sida.addEventListener('click', (event) => {
+  sida.addEventListener('click', event => {
 
     event.currentTarget.style.visibility = 'hidden';
   });
 
   li.forEach(knapp => {
 
-    knapp.addEventListener('click', (event) => {
+    knapp.addEventListener('click', event => {
 
       event.target.style.color = 'red';
 
