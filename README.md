@@ -2,5 +2,5 @@
 ISGB15
 
 * Föreläsningar
-* Tic Tac Toe-projekt : Laboration 1 - 4
+* Tic-Tac-Toe : Laboration 1 - 4
 * Tentor
