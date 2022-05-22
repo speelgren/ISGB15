@@ -1,5 +1,6 @@
 ### JavaScript för webbutveckling
 ISGB15
 
-* Tic Tac Toe-projekt : Laboration 1 - 4
+* Föreläsningar
+* Tic-Tac-Toe : Laboration 1 - 4
 * Tentor
