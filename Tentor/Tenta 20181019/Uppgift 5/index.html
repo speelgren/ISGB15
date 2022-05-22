@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Uppgift 5</title>
+  </head>
+  <body>
+    <div id="error-message"></div>
+    <form action="index.html" method="post" onsubmit="return validateRegistration();">
+      <div>
+        <label for="email">Mejl:</label>
+        <input type="email" id="email" />
+      </div>
+      <div>
+        <label for="code">Kod:</label>
+        <input type="text" id="code" />
+        <a href="https://www.youtube.com/watch?v=DKqKLnsmoK4" target="_blank">Har du ingen kod erhåller du koden här!</a>
+      </div>
+      <div>
+        <input type="checkbox" id="terms" />
+        <label for="terms">Jag samtycker till att lagra personuppgifter (GDPR)</label>
+      </div>
+      <div>
+        <button type="reset">Rensa</button>
+        <button type="submit">Skicka</button>
+      </div>
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>
