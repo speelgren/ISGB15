@@ -34,7 +34,14 @@ const validate = () => {
   } catch ( error ) {
 
     let errorMSGNode = document.createTextNode(error);
-    errorMSG.appendChild(errorMSGNode);
+
+    if(errorMSG.firstChild == null) {
+      
+      errorMSG.appendChild(errorMSGNode);
+    } else {
+
+      errorMSG.replaceChild(errorMSGNode, errorMSG.firstChild);
+    }
 
     return false;
   }

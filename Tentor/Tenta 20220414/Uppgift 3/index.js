@@ -3,7 +3,6 @@
 window.addEventListener('load', () => {
 
   console.log('DOM loaded');
-
   document.querySelector('form').addEventListener('submit', validate);
 });
 
@@ -19,12 +18,19 @@ const validate = (event) => {
     if(fisk.checked != true) throw new Error ('Välj fisk');
     if(klocka != '8') throw new Error ('Välj kl 8');
 
-  } catch(error) {
+  } catch (error) {
 
     let felmeddelande = document.createTextNode(error);
     let err = document.querySelector('#error');
     err.style.textDecoration = 'underline red';
-    err.appendChild(felmeddelande);
+
+    if(err.firstChild == null) {
+
+      err.appendChild(felmeddelande);
+    } else {
+
+      err.replaceChild(felmeddelande, err.firstChild);
+    }
 
     event.preventDefault();
   }

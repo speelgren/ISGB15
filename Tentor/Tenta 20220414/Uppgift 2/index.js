@@ -26,7 +26,6 @@ oHeadings.createHeadings = function(nbr) {
     oHeadings.hTextRef = document.createTextNode(nbr);
     oHeadings.hRef.appendChild(oHeadings.hTextRef);
     oHeadings.divRef.appendChild(oHeadings.hRef);
-
   } else {
 
     console.log('felaktig indata!');

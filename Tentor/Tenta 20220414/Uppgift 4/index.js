@@ -31,13 +31,13 @@ const addClickListenersToButtons = () => {
 
       p.addEventListener('mouseover', (event) => {
 
-        event.target.style.fontWeight = 'bold';
+        //event.target.style.fontWeight = 'bold';
         event.target.classList.add('font-weight-bold');
       });
 
       p.addEventListener('mouseout', (event) => {
 
-        event.target.style.fontWeight = 'normal';
+        //event.target.style.fontWeight = 'normal';
         event.target.classList.remove('font-weight-bold');
       });
     });

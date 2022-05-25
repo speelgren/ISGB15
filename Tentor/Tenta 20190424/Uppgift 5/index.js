@@ -33,12 +33,16 @@ const validate = () => {
     return true;
   } catch (error) {
 
-    /*
-     * let errorNode = document.createTextNode(error);
-     * errormsg.appendChild(errorNode);
-     */
+    let errorNode = document.createTextNode(error);
 
-    errormsg.textContent = error;
+    if(errormsg.firstChild == null) {
+
+      errormsg.appendChild(errorNode);
+    } else {
+
+      errormsg.replaceChild(errorNode, errormsg.firstChild);
+    }
+    
     return false;
   }
 }
